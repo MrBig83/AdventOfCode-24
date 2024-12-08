@@ -48,7 +48,6 @@ fs.readFile("02beta.txt", (err, input) => {
                 } else if (diff > 0) {
                     direction = "P"
                 } else {
-                    console.log("ABORT - INGEN DIFF");
                     counterrors++
                 }
                 console.log(diff + direction);
@@ -65,9 +64,16 @@ fs.readFile("02beta.txt", (err, input) => {
                 
 
                 if(diff > 3 || diff < -3 || diff == 0) {
-                    console.log("ABORT - Diffen är mer än 3");
-                    counterrors++
-                    prevNum = compareNum
+                    if(dampener < 1) {
+                        console.log("ABORT - Diffen är mer än 3ballar i en påse");
+                        counterrors++
+                        prevNum = compareNum
+                        
+                    } else {
+                        prevNum = compareNum
+
+                    }
+
                 } else {
                     prevNum = compareNum
                     
